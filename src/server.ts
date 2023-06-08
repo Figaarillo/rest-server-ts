@@ -8,21 +8,29 @@ class ServerBoostrap {
 
   constructor() {
     this.app = express()
-    this.app.use(express.json)
+    this.port = 8000
+
+    // middlewares
+    this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: true }))
     this.app.use(morgan('dev'))
     this.app.use(cors())
-    this.port = 8000
+
+    // routes
+    
+    // server
     this.listen()
   }
 
-  public listen() {
+  public listen(): void {
     this.app.listen(this.port, () => {
-      console.log(`Server is runnig! Go to http://localhost:${this.port}`) 
+      // eslint-disable-next-line no-console
+      console.log(`Server is listening on http://localhost:${this.port}/`)
     })
   }
 }
 
+// eslint-disable-next-line no-new
 new ServerBoostrap()
 
 export default ServerBoostrap
