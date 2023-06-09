@@ -4,7 +4,7 @@ abstract class ConfigServer {
   constructor() {
     const nodeNameEnv = this.createPathEnv(this.getNodeEnv())
     dotenv.config({
-      path: nodeNameEnv
+      path: nodeNameEnv,
     })
   }
 
