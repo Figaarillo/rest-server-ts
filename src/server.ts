@@ -2,14 +2,17 @@ import express, { Application, Router } from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import UserRouter from './router/user.router'
+import ConfigServer from './config/config'
 
-class ServerBoostrap {
+class ServerBoostrap extends ConfigServer {
   public app: Application
   private readonly port: number
 
   constructor() {
+    super()
+
     this.app = express()
-    this.port = 8000
+    this.port = this.getNumberEnviroment('PORT')
 
     // middlewares
     this.app.use(express.json())
