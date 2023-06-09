@@ -1,15 +1,18 @@
-import express, { Application, Router } from 'express'
+import express, { type Application, type Router } from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import UserRouter from './router/user.router'
+import ConfigServer from './config/config'
 
-class ServerBoostrap {
+class ServerBoostrap extends ConfigServer {
   public app: Application
   private readonly port: number
 
   constructor() {
+    super()
+
     this.app = express()
-    this.port = 8000
+    this.port = this.getNumberEnviroment('PORT')
 
     // middlewares
     this.app.use(express.json())
@@ -19,12 +22,12 @@ class ServerBoostrap {
 
     // routes
     this.app.use('/api', this.routes())
-    
+
     // server
     this.listen()
   }
 
-  public routes(): Array<Router> {
+  public routes(): Router[] {
     return [new UserRouter().router]
   }
 
@@ -32,7 +35,8 @@ class ServerBoostrap {
     this.app.listen(this.port, () => {
       // eslint-disable-next-line no-console
       console.log(`Server is listening on http://localhost:${this.port}/`)
-    }) }
+    })
+  }
 }
 
 // eslint-disable-next-line no-new
