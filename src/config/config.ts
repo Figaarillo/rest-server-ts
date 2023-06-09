@@ -17,17 +17,16 @@ abstract class ConfigServer {
   }
 
   public getNodeEnv(): string {
-     return this.getEnviroment('NODE_ENV')?.trim() ?? ''
+    return this.getEnviroment('NODE_ENV')?.trim() ?? ''
   }
 
- 
   public createPathEnv(path: string): string {
     const ENV: string = '.env'
-    
-    if (path) {
+
+    if (path.length > 0) {
       return `${ENV}.${path}`
     }
-    
+
     return ENV
   }
 }
