@@ -7,13 +7,10 @@
   "scripts": {
     "start": "tsc && node dist/server.js",
     "start:dev": "tsc && concurrently \"tsc -w \" \"nodemon dist/server.js\"",
-    "start:prod": "NODE_ENV=production pnpm run start",
     "start:test": "NODE_ENV=test pnpm run start:dev",
-    "tsc": "tsc",
-    "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint ./src/**/*.ts --fix",
-    "prettier": "prettier ---write .",
-    "test": "NODE_ENV=test"
+    "lint": "eslint --ext .ts src",
+    "prettier": "prettier --write \"src/**/*.ts\"",
+    "lint:fix": "eslint --ext .ts src --fix"
   },
   "keywords": [],
   "license": "ISC",
