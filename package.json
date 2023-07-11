@@ -25,6 +25,7 @@
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
     "typeorm": "^0.3.16",
     "typeorm-naming-strategies": "^4.1.0"
   },

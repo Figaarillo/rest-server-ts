@@ -20,4 +20,3 @@ Proyecto de servidor utilizando NodeJS con `TypeScript` y `TypeORM` como ORM par
 - [typescript](): para manejar el lenguaje que utilizará el proyecto
 
 ## Estructura del proyecto
-

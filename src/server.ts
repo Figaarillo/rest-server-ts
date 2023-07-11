@@ -1,8 +1,10 @@
+/* eslint-disable no-console */
 import express, { type Application, type Router } from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import UserRouter from './router/user.router'
 import ConfigServer from './config/config'
+import { DataSource } from 'typeorm'
 
 class ServerBoostrap extends ConfigServer {
   public app: Application
@@ -25,10 +27,21 @@ class ServerBoostrap extends ConfigServer {
 
     // server
     this.listen()
+    this.dbConnection()
   }
 
   public routes(): Router[] {
     return [new UserRouter().router]
+  }
+
+  async dbConnection(): Promise<void> {
+    try {
+      await new DataSource(this.typeORMConfig).initialize()
+      console.log('🚀  Database Connected')
+    } catch (error: any) {
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      console.log(`🚀 Database Connection Error: ${error}`)
+    }
   }
 
   public listen(): void {
