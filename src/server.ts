@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import express, { type Application, type Router } from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
@@ -37,7 +38,8 @@ class ServerBoostrap extends ConfigServer {
     try {
       await new DataSource(this.typeORMConfig).initialize()
       console.log('🚀  Database Connected')
-    } catch (error) {
+    } catch (error: any) {
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       console.log(`🚀 Database Connection Error: ${error}`)
     }
   }

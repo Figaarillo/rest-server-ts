@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import {
   CreateDateColumn,
   PrimaryGeneratedColumn,
@@ -6,7 +7,7 @@ import {
 
 abstract class BaseEntity {
   @PrimaryGeneratedColumn('uuid')
-  id!: string // al agregar !, se está indicando a TS que 'confie' en que el valor va a ser un string
+  id!: string
 
   @CreateDateColumn({
     name: 'created_at',

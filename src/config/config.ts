@@ -1,3 +1,4 @@
+/* eslint-disable n/no-path-concat */
 import * as dotenv from 'dotenv'
 import { type DataSourceOptions } from 'typeorm'
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
