@@ -1,6 +1,6 @@
 import { type Request, type Response } from 'express'
-import UserController from '../controllers/user.controller'
-import BaseRouter from './router'
+import UserController from './controllers/user.controller'
+import BaseRouter from '../shared/router/router'
 
 class UserRouter extends BaseRouter<UserController> {
   constructor() {
