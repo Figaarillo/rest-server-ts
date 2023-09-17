@@ -1,6 +1,7 @@
 import { IsNotEmpty } from 'class-validator'
+import { BaseDTO } from '../../config/base.dto'
 
-export class CategoryDTO {
+export class CategoryDTO extends BaseDTO {
   @IsNotEmpty()
   name!: string
 }
