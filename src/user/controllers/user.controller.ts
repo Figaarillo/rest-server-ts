@@ -8,6 +8,28 @@ class UserController {
     this.userService = new UserService()
   }
 
+  async createUser(req: Request, res: Response): Promise<void> {
+    try {
+      const data = await this.userService.create(req.body)
+
+      res.status(201).json(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  async deleteUser(req: Request, res: Response): Promise<void> {
+    const { id } = req.params
+
+    try {
+      const data = await this.userService.delete(id)
+
+      res.status(200).json(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   async getUsers(_req: Request, res: Response): Promise<void> {
     try {
       const data = await this.userService.getAll()
@@ -30,18 +52,9 @@ class UserController {
     }
   }
 
-  async createUser(req: Request, res: Response): Promise<void> {
-    try {
-      const data = await this.userService.create(req.body)
-
-      res.status(201).json(data)
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
   async updateUser(req: Request, res: Response): Promise<void> {
     const { id } = req.params
+
     try {
       const data = await this.userService.update(id, req.body)
 
