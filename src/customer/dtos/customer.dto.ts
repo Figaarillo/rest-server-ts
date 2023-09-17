@@ -2,7 +2,7 @@ import { IsNotEmpty } from 'class-validator'
 import UserEntity from '../../user/entities/user.entity'
 import { BaseDTO } from '../../config/base.dto'
 
-export class CustomerDto extends BaseDTO {
+class CustomerDto extends BaseDTO {
   @IsNotEmpty()
   address!: string
 
@@ -12,3 +12,5 @@ export class CustomerDto extends BaseDTO {
   @IsNotEmpty()
   user!: UserEntity
 }
+
+export default CustomerDto

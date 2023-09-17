@@ -1,7 +1,7 @@
 import { CategoryService } from '../services/category.service'
 import { type Request, type Response } from 'express'
 
-export class CategoryController {
+class CategoryController {
   private readonly categoryService: CategoryService
 
   constructor() {
@@ -64,3 +64,5 @@ export class CategoryController {
     }
   }
 }
+
+export default CategoryController

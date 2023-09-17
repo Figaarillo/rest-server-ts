@@ -1,9 +1,9 @@
 import { type UpdateResult, type DeleteResult } from 'typeorm'
 import { BaseService } from '../../config/base.service'
 import UserEntity from '../entities/user.entity'
-import { type UserDTO } from '../dtos/user.dto'
+import type UserDTO from '../dtos/user.dto'
 
-export class UserService extends BaseService<UserEntity> {
+class UserService extends BaseService<UserEntity> {
   constructor() {
     super(UserEntity)
   }
@@ -28,3 +28,5 @@ export class UserService extends BaseService<UserEntity> {
     return await (await this.execRepository).update(id, infoUpdate)
   }
 }
+
+export default UserService

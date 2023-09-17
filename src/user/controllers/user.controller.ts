@@ -1,5 +1,5 @@
 import { type Request, type Response } from 'express'
-import { UserService } from '../services/user.service'
+import UserService from '../services/user.service'
 
 class UserController {
   private readonly userService: UserService
