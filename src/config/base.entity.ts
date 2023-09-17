@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import {
   CreateDateColumn,
   PrimaryGeneratedColumn,
@@ -16,7 +15,7 @@ abstract class BaseEntity {
   createdAt!: Date
 
   @UpdateDateColumn({
-    name: 'updated_ad',
+    name: 'updated_at',
     type: 'timestamp',
   })
   updatedAt!: Date

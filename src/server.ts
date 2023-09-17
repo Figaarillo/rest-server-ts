@@ -4,7 +4,6 @@ import morgan from 'morgan'
 import cors from 'cors'
 import UserRouter from './user/user.router'
 import ConfigServer from './config/config'
-import { DataSource } from 'typeorm'
 
 class ServerBoostrap extends ConfigServer {
   public app: Application
@@ -35,13 +34,13 @@ class ServerBoostrap extends ConfigServer {
   }
 
   async dbConnection(): Promise<void> {
-    try {
-      await new DataSource(this.typeORMConfig).initialize()
-      console.log('🚀  Database Connected')
-    } catch (error: any) {
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      console.log(`🚀 Database Connection Error: ${error}`)
-    }
+    await this.initDBConnection
+      .then(() => {
+        console.log('🚀  Database Connected')
+      })
+      .catch((error: string) => {
+        console.log(`🚀 Database Connection Error: ${error}`)
+      })
   }
 
   public listen(): void {

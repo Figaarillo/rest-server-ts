@@ -1,6 +1,7 @@
 dist/
 notes/
 node_modules/
+.husky/
 
 .env
 .env.test

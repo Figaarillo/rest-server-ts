@@ -1,7 +1,8 @@
+/* eslint-disable no-console */
 /* eslint-disable n/no-path-concat */
 import * as dotenv from 'dotenv'
-import { type DataSourceOptions } from 'typeorm'
-import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
+import { type DataSource } from 'typeorm'
+import { AppDataSource } from './data-source'
 
 abstract class ConfigServer {
   constructor() {
@@ -33,20 +34,8 @@ abstract class ConfigServer {
     return ENV
   }
 
-  public get typeORMConfig(): DataSourceOptions {
-    return {
-      type: 'mysql',
-      host: this.getEnviroment('DB_HOST'),
-      port: this.getNumberEnviroment('DB_PORT'),
-      username: this.getEnviroment('DB_USER'),
-      password: this.getEnviroment('DB_PASSWORD'),
-      database: this.getEnviroment('DB_DATABASE'),
-      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-      migrations: [__dirname + '/../../migrations/*{.ts, .js}'],
-      synchronize: true,
-      logging: false,
-      namingStrategy: new SnakeNamingStrategy(),
-    }
+  get initDBConnection(): Promise<DataSource> {
+    return AppDataSource.initialize()
   }
 }
 
