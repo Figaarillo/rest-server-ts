@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { Column, Entity, OneToOne } from 'typeorm'
 import BaseEntity from '../../config/base.entity'
 import ProductEntity from '../../product/entities/product.entity'
