@@ -3,7 +3,7 @@ import { BaseDTO } from '../../config/base.dto'
 import ProductEntity from '../../product/entities/product.entity'
 import PurchaseEntity from '../entities/purchase.entity'
 
-class PurchaseProduct extends BaseDTO {
+class PurchaseProductDTO extends BaseDTO {
   @IsNotEmpty()
   quantityProduct!: number
 
@@ -17,4 +17,4 @@ class PurchaseProduct extends BaseDTO {
   purchase!: PurchaseEntity
 }
 
-export default PurchaseProduct
+export default PurchaseProductDTO
