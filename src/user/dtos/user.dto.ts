@@ -1,7 +1,7 @@
 import { IsNotEmpty } from 'class-validator'
 import { BaseDTO } from '../../config/base.dto'
 
-export class UserDTO extends BaseDTO {
+class UserDTO extends BaseDTO {
   @IsNotEmpty()
   name!: string
 
@@ -20,3 +20,5 @@ export class UserDTO extends BaseDTO {
   @IsNotEmpty()
   province!: string
 }
+
+export default UserDTO

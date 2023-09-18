@@ -1,7 +1,7 @@
 import { type UpdateResult, type DeleteResult } from 'typeorm'
 import { BaseService } from '../../config/base.service'
 import CategoryEntity from '../entities/category.entity'
-import { type CategoryDTO } from '../dtos/category.dto'
+import type CategoryDTO from '../dtos/category.dto'
 
 export class CategoryService extends BaseService<CategoryEntity> {
   constructor() {
@@ -28,3 +28,5 @@ export class CategoryService extends BaseService<CategoryEntity> {
     return await (await this.execRepository).update(id, infoUpdate)
   }
 }
+
+export default CategoryService
