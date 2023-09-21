@@ -19,6 +19,22 @@ export class HttpResponse {
     })
   }
 
+  Created(res: Response, data?: any): Response {
+    return res.status(HTTPStatus.CREATED).json({
+      status: HTTPStatus.CREATED,
+      statusMsg: 'Created',
+      data,
+    })
+  }
+
+  BadRequest(res: Response, data?: any): Response {
+    return res.status(HTTPStatus.BAD_REQUEST).json({
+      status: HTTPStatus.BAD_REQUEST,
+      statusMsg: 'Bad Request',
+      data,
+    })
+  }
+
   NotFound(res: Response, data?: any): Response {
     return res.status(HTTPStatus.NOT_FOUND).json({
       status: HTTPStatus.NOT_FOUND,
