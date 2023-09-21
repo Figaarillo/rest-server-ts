@@ -20,7 +20,7 @@ class ProductController {
 
       return this.httpResponse.Ok(res, data)
     } catch (error) {
-      return this.httpResponse.NotFound(res, error)
+      return this.httpResponse.BadRequest(res, error)
     }
   }
 
