@@ -1,66 +1,84 @@
 import { type Request, type Response } from 'express'
 import ProductService from '../services/product.service'
+import { HttpResponse } from '../../shared/response/http.response'
 
 class ProductController {
   private readonly productService: ProductService
+  private readonly httpResponse: HttpResponse
 
   constructor() {
     this.productService = new ProductService()
+    this.httpResponse = new HttpResponse()
   }
 
-  async createProduct(req: Request, res: Response): Promise<void> {
+  async createProduct(
+    req: Request,
+    res: Response
+  ): Promise<Response | undefined> {
     try {
       const data = await this.productService.create(req.body)
 
-      res.status(201).json(data)
+      return this.httpResponse.Ok(res, data)
     } catch (error) {
-      console.error(error)
+      return this.httpResponse.BadRequest(res, error)
     }
   }
 
-  async deleteProduct(req: Request, res: Response): Promise<void> {
+  async deleteProduct(
+    req: Request,
+    res: Response
+  ): Promise<Response | undefined> {
     const { id } = req.params
 
     try {
       const data = await this.productService.delete(id)
 
-      res.status(200).json(data)
+      return this.httpResponse.Ok(res, data)
     } catch (error) {
-      console.error(error)
+      return this.httpResponse.NotFound(res, error)
     }
   }
 
-  async getProducts(_req: Request, res: Response): Promise<void> {
+  async getProducts(
+    _req: Request,
+    res: Response
+  ): Promise<Response | undefined> {
     try {
       const data = await this.productService.getAll()
 
-      res.status(200).json(data)
+      return this.httpResponse.Ok(res, data)
     } catch (error) {
-      console.error(error)
+      return this.httpResponse.NotFound(res, error)
     }
   }
 
-  async getProductById(req: Request, res: Response): Promise<void> {
+  async getProductById(
+    req: Request,
+    res: Response
+  ): Promise<Response | undefined> {
     const { id } = req.params
 
     try {
       const data = await this.productService.getById(id)
 
-      res.status(200).json(data)
+      return this.httpResponse.Ok(res, data)
     } catch (error) {
-      console.error(error)
+      return this.httpResponse.NotFound(res, error)
     }
   }
 
-  async updateProduct(req: Request, res: Response): Promise<void> {
+  async updateProduct(
+    req: Request,
+    res: Response
+  ): Promise<Response | undefined> {
     const { id } = req.params
 
     try {
       const data = await this.productService.update(id, req.body)
 
-      res.status(200).json(data)
+      return this.httpResponse.Ok(res, data)
     } catch (error) {
-      console.error(error)
+      return this.httpResponse.NotFound(res, error)
     }
   }
 }

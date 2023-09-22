@@ -1,66 +1,84 @@
+import { HttpResponse } from '../../shared/response/http.response'
 import { CategoryService } from '../services/category.service'
 import { type Request, type Response } from 'express'
 
 class CategoryController {
   private readonly categoryService: CategoryService
+  private readonly httpResponse: HttpResponse
 
   constructor() {
     this.categoryService = new CategoryService()
+    this.httpResponse = new HttpResponse()
   }
 
-  async getCategories(_req: Request, res: Response): Promise<void> {
+  async getCategories(
+    _req: Request,
+    res: Response
+  ): Promise<Response | undefined> {
     try {
       const data = await this.categoryService.getAll()
 
-      res.status(200).json(data)
+      return this.httpResponse.Ok(res, data)
     } catch (error) {
-      console.error(error)
+      return this.httpResponse.NotFound(res, error)
     }
   }
 
-  async getCategoryById(req: Request, res: Response): Promise<void> {
+  async getCategoryById(
+    req: Request,
+    res: Response
+  ): Promise<Response | undefined> {
     const { id } = req.body
 
     try {
       const data = await this.categoryService.getById(id)
 
-      res.status(200).json(data)
+      return this.httpResponse.Ok(res, data)
     } catch (error) {
-      console.error(error)
+      return this.httpResponse.NotFound(res, error)
     }
   }
 
-  async createCategory(req: Request, res: Response): Promise<void> {
+  async createCategory(
+    req: Request,
+    res: Response
+  ): Promise<Response | undefined> {
     try {
       const data = await this.categoryService.create(req.body)
 
-      res.status(201).json(data)
+      return this.httpResponse.Created(res, data)
     } catch (error) {
-      console.error(error)
+      return this.httpResponse.BadRequest(res, error)
     }
   }
 
-  async deleteCategory(req: Request, res: Response): Promise<void> {
+  async deleteCategory(
+    req: Request,
+    res: Response
+  ): Promise<Response | undefined> {
     const { id } = req.params
 
     try {
       const data = await this.categoryService.delete(id)
 
-      res.status(200).json(data)
+      return this.httpResponse.Ok(res, data)
     } catch (error) {
-      console.error(error)
+      return this.httpResponse.NotFound(res, error)
     }
   }
 
-  async updateCategory(req: Request, res: Response): Promise<void> {
+  async updateCategory(
+    req: Request,
+    res: Response
+  ): Promise<Response | undefined> {
     const { id } = req.params
 
     try {
       const data = await this.categoryService.update(id, req.body)
 
-      res.status(200).json(data)
+      return this.httpResponse.Ok(res, data)
     } catch (error) {
-      console.error(error)
+      return this.httpResponse.NotFound(res, error)
     }
   }
 }
