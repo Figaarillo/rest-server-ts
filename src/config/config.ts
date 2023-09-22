@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable n/no-path-concat */
 import * as dotenv from 'dotenv'
 import { type DataSource } from 'typeorm'
 import { AppDataSource } from './data-source'
