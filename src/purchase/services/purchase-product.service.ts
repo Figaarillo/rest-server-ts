@@ -27,7 +27,11 @@ class PurchaseProductService extends BaseService<PurchaseProductEntity> {
   }
 
   async getAll(): Promise<PurchaseProductEntity[]> {
-    return await (await this.execRepository).find()
+    return await (await this.execRepository)
+      .createQueryBuilder('purchase_product')
+      .leftJoinAndSelect('purchase_product.product', 'product')
+      .leftJoinAndSelect('purchase_product.purchase', 'purchase')
+      .getMany()
   }
 
   async getById(id: string): Promise<PurchaseProductEntity | null> {

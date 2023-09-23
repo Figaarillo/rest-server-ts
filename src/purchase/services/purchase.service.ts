@@ -17,11 +17,18 @@ class PurchaseService extends BaseService<PurchaseEntity> {
   }
 
   async getAll(): Promise<PurchaseEntity[]> {
-    return await (await this.execRepository).find()
+    return await (await this.execRepository)
+      .createQueryBuilder('purchase')
+      .leftJoinAndSelect('purchase.customer', 'customer')
+      .getMany()
   }
 
   async getById(id: string): Promise<PurchaseEntity | null> {
-    return await (await this.execRepository).findOneBy({ id })
+    return await (await this.execRepository)
+      .createQueryBuilder('purchase')
+      .leftJoinAndSelect('purchase.customer', 'customer')
+      .where({ id })
+      .getOne()
   }
 
   async update(id: string, infoUpdate: PurchaseDTO): Promise<UpdateResult> {

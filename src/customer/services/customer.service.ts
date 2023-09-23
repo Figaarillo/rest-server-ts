@@ -17,15 +17,18 @@ class CustomerService extends BaseService<CustomerEntity> {
   }
 
   async getAll(): Promise<CustomerEntity[]> {
-    // return await (await this.execRepository)
-    //   .createQueryBuilder('user')
-    //   .leftJoinAndSelect('user.customer', 'customer')
-    //   .getMany()
-    return await (await this.execRepository).find()
+    return await (await this.execRepository)
+      .createQueryBuilder('customer')
+      .leftJoinAndSelect('customer.user', 'user')
+      .getMany()
   }
 
   async getById(id: string): Promise<CustomerEntity | null> {
-    return await (await this.execRepository).findOneBy({ id })
+    return await (await this.execRepository)
+      .createQueryBuilder('customer')
+      .leftJoinAndSelect('customer.user', 'user')
+      .where({ id })
+      .getOne()
   }
 
   async update(id: string, infoUpdate: CustomerDto): Promise<UpdateResult> {

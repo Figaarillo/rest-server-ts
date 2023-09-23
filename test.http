@@ -42,6 +42,9 @@ Content-Type: application/json
     "customer": "8f3e686d-7b71-4e2b-a343-571b14656bd9",
 }
 
+GET http://localhost:5000/api/purchases
+
+
 #######  CATEGORY REQUEST ########
 
 POST http://localhost:5000/api/categories
@@ -70,3 +73,6 @@ Content-Type: application/json
 GET http://localhost:5000/api/products
 
 
+######## PURCHASE PRODUCT REQUEST ########
+
+GET http://localhost:5000/api/purchase-products

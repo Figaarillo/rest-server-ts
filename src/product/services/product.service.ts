@@ -17,11 +17,18 @@ class ProductService extends BaseService<ProductEntity> {
   }
 
   async getAll(): Promise<ProductEntity[]> {
-    return await (await this.execRepository).find()
+    return await (await this.execRepository)
+      .createQueryBuilder('product')
+      .leftJoinAndSelect('product.category', 'category')
+      .getMany()
   }
 
   async getById(id: string): Promise<ProductEntity | null> {
-    return await (await this.execRepository).findOneBy({ id })
+    return await (await this.execRepository)
+      .createQueryBuilder('product')
+      .leftJoinAndSelect('product.category', 'category')
+      .where({ id })
+      .getOne()
   }
 
   async update(id: string, infoUpdate: ProductDTO): Promise<UpdateResult> {
