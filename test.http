@@ -1,0 +1,72 @@
+####### USER REQUSTS #######
+
+POST http://localhost:5000/api/users
+Content-Type: application/json
+
+{
+  "name": "Axel",
+  "lastname": "Leoanrdi",
+  "username": "figarillo",
+  "email": "figarillo@mail.com",
+  "password": "SecretPass1928.",
+  "city": "James Craik",
+  "province": "Cordoba",
+  "role": "USER"
+}
+
+GET http://localhost:5000/api/users
+
+####### CUSTOMER REQUEST #######
+
+POST http://localhost:5000/api/customers
+Content-Type: application/json
+
+{
+    "address": "mi direccion",
+    "dni": 41043534,
+    "user": "d066fe21-e27a-41b1-a16c-94bcd2ab6cff"
+}
+
+
+GET http://localhost:5000/api/customers/
+
+
+######## PRUCHASE REQUEST ########
+
+POST http://localhost:5000/api/purchases
+Content-Type: application/json
+
+{
+    "status": "PENDING",
+    "paymentMethod": "Credit Card",
+    "customer": "8f3e686d-7b71-4e2b-a343-571b14656bd9",
+}
+
+#######  CATEGORY REQUEST ########
+
+POST http://localhost:5000/api/categories
+Content-Type: application/json
+
+{
+  "name": "Electrodomesticos"
+}
+
+
+GET http://localhost:5000/api/categories
+
+
+####### PRODUCT REQUEST ########
+
+POST http://localhost:5000/api/products
+Content-Type: application/json
+
+{
+    "productName": "Manzana",
+    "description": "Mi Manzana",
+    "price": 100,
+    "category": "24a9e834-ae87-40ce-9218-b845488daff5"
+}
+
+GET http://localhost:5000/api/products
+
+

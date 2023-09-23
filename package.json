@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Proyecto de servidor utilizando NodeJS con `TypeScript` y `TypeORM` como ORM para SQL",
   "author": "Figarillo",
-  "main": "index.js",
+  "main": "dist/src/server.js",
   "scripts": {
     "start": "tsc --noEmit && node dist/server.js",
     "start:dev": "tsc --noEmit && concurrently \"tsc -w\" \"nodemon dist/server.js\"",

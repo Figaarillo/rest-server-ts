@@ -17,6 +17,10 @@ class CustomerService extends BaseService<CustomerEntity> {
   }
 
   async getAll(): Promise<CustomerEntity[]> {
+    // return await (await this.execRepository)
+    //   .createQueryBuilder('user')
+    //   .leftJoinAndSelect('user.customer', 'customer')
+    //   .getMany()
     return await (await this.execRepository).find()
   }
 

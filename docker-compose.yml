@@ -6,13 +6,14 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: app_db
-      MYSQL_ROOT_USER: admin
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_USER: figarillo
-      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_USER: ${MYSQL_ROOT_USER}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - ./mysql:/docker-entrypoint-initdb.d
-      - ./my.cnf:/etc/mysql/my.cnf
+      - ./data/db:/var/lib/mysql
+      - ./data/mysql:/docker-entrypoint-initdb.d
+      - ./config/my.cnf:/etc/mysql/my.cnf
     command: --init-file /docker-entrypoint-initdb.d/init.sql
     ports:
-      - "3306:3306"
+      - '3306:3306'
