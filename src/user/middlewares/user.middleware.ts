@@ -26,7 +26,7 @@ class UserMiddleware {
 
     validate(valid).then(errors => {
       if (errors.length > 0) {
-        return this.httpResponse.InternalServerError(res, errors)
+        return this.httpResponse.BadRequest(res, errors)
       }
       next()
     })
