@@ -5,6 +5,11 @@ import cors from 'cors'
 import UserRouter from './user/user.router'
 import ConfigServer from './config/config'
 import 'reflect-metadata'
+import CategoryRouter from './category/category.router'
+import CustomerRouter from './customer/customer.router'
+import ProductRouter from './product/product.router'
+import PurchaseRouter from './purchase/purchase.router'
+import PurchaseProductRouter from './purchase/purchsae-product.router'
 
 class ServerBoostrap extends ConfigServer {
   public app: Application
@@ -31,7 +36,14 @@ class ServerBoostrap extends ConfigServer {
   }
 
   public routes(): Router[] {
-    return [new UserRouter().router]
+    return [
+      new CategoryRouter().router,
+      new CustomerRouter().router,
+      new ProductRouter().router,
+      new PurchaseRouter().router,
+      new PurchaseProductRouter().router,
+      new UserRouter().router,
+    ]
   }
 
   async dbConnection(): Promise<void> {
