@@ -12,6 +12,9 @@ class ProductEntity extends BaseEntity {
   @Column()
   description!: string
 
+  @Column()
+  price!: number
+
   @OneToOne(() => CategoryEntity, category => category.product)
   @JoinColumn({ name: 'category_id' })
   category!: CategoryEntity

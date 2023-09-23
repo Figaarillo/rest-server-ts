@@ -17,7 +17,7 @@ class UserController {
 
       return this.httpResponse.Ok(res, data)
     } catch (error) {
-      return this.httpResponse.Ok(res, error)
+      return this.httpResponse.BadRequest(res, error)
     }
   }
 
@@ -33,7 +33,7 @@ class UserController {
 
       return this.httpResponse.Ok(res, data)
     } catch (error) {
-      return this.httpResponse.Ok(res, error)
+      return this.httpResponse.BadRequest(res, error)
     }
   }
 
@@ -46,7 +46,7 @@ class UserController {
 
       return this.httpResponse.Ok(res, data)
     } catch (error) {
-      return this.httpResponse.Ok(res, error)
+      return this.httpResponse.BadRequest(res, error)
     }
   }
 
@@ -61,7 +61,7 @@ class UserController {
 
       return this.httpResponse.Ok(res, data)
     } catch (error) {
-      return this.httpResponse.Ok(res, error)
+      return this.httpResponse.BadRequest(res, error)
     }
   }
 
@@ -77,7 +77,7 @@ class UserController {
 
       return this.httpResponse.Ok(res, data)
     } catch (error) {
-      return this.httpResponse.Ok(res, error)
+      return this.httpResponse.BadRequest(res, error)
     }
   }
 }
