@@ -1,23 +1,25 @@
 import { type NextFunction, type Request, type Response } from 'express'
 import { HttpResponse } from '../../shared/response/http.response'
-import CategoryDTO from '../dtos/category.dto'
+import CustomerDTO from '../dtos/customer.dto'
 import { validate } from 'class-validator'
 
-class CategoryMiddleware {
+class CustomerMiddleware {
   private readonly httpResponse: HttpResponse
 
   constructor() {
     this.httpResponse = new HttpResponse()
   }
 
-  categoryValidator(req: Request, res: Response, next: NextFunction): void {
-    const { name } = req.body
+  customerValidator(req: Request, res: Response, next: NextFunction): void {
+    const { address, dni, user } = req.body
 
-    const categoryDTO = new CategoryDTO()
+    const customerDTO = new CustomerDTO()
 
-    categoryDTO.name = name
+    customerDTO.address = address
+    customerDTO.dni = dni
+    customerDTO.user = user
 
-    validate(categoryDTO).then(errors => {
+    validate(customerDTO).then(errors => {
       if (errors.length > 0) {
         return this.httpResponse.BadRequest(res, errors)
       }
@@ -27,4 +29,4 @@ class CategoryMiddleware {
   }
 }
 
-export default CategoryMiddleware
+export default CustomerMiddleware

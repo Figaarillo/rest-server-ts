@@ -14,17 +14,17 @@ class UserMiddleware {
     const { name, lastname, username, password, city, province, role } =
       req.body
 
-    const valid = new UserDTO()
+    const userDTO = new UserDTO()
 
-    valid.name = name
-    valid.lastname = lastname
-    valid.username = username
-    valid.password = password
-    valid.city = city
-    valid.province = province
-    valid.role = role
+    userDTO.name = name
+    userDTO.lastname = lastname
+    userDTO.username = username
+    userDTO.password = password
+    userDTO.city = city
+    userDTO.province = province
+    userDTO.role = role
 
-    validate(valid).then(errors => {
+    validate(userDTO).then(errors => {
       if (errors.length > 0) {
         return this.httpResponse.BadRequest(res, errors)
       }
