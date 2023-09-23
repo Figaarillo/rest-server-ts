@@ -76,3 +76,6 @@ GET http://localhost:5000/api/products
 ######## PURCHASE PRODUCT REQUEST ########
 
 GET http://localhost:5000/api/purchase-products
+
+GET http://localhost:5000/api/purchase-products/09708243-a8d8-4f10-a5c5-143f975ab015
+
