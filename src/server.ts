@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 import UserRouter from './user/user.router'
 import ConfigServer from './config/config'
+import 'reflect-metadata'
 
 class ServerBoostrap extends ConfigServer {
   public app: Application
