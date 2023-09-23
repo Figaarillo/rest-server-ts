@@ -5,8 +5,8 @@
   "author": "Figarillo",
   "main": "index.js",
   "scripts": {
-    "start": "rm -rf dist && tsc && node dist/server.js",
-    "start:dev": "tsc && concurrently \"tsc -w\" \"nodemon dist/server.js\"",
+    "start": "tsc --noEmit && node dist/server.js",
+    "start:dev": "tsc --noEmit && concurrently \"tsc -w\" \"nodemon dist/server.js\"",
     "start:test": "NODE_ENV=test pnpm run start:dev",
     "lint": "eslint --ext .ts src",
     "prettier": "prettier --write \"src/**/*.ts\"",

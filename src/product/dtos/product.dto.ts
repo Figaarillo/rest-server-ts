@@ -10,6 +10,9 @@ class ProductDTO extends BaseDTO {
   description!: string
 
   @IsNotEmpty()
+  price!: number
+
+  @IsNotEmpty()
   category!: CategoryEntity
 }
 

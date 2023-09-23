@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator'
+import { IsNotEmpty, IsOptional } from 'class-validator'
 import { BaseDTO } from '../../config/base.dto'
 import ProductEntity from '../../product/entities/product.entity'
 import PurchaseEntity from '../entities/purchase.entity'
@@ -7,14 +7,14 @@ class PurchaseProductDTO extends BaseDTO {
   @IsNotEmpty()
   quantityProduct!: number
 
-  @IsNotEmpty()
-  totalPrice!: number
+  @IsOptional()
+  totalPrice?: number
 
-  @IsNotEmpty()
-  product!: ProductEntity
+  @IsOptional()
+  product?: ProductEntity
 
-  @IsNotEmpty()
-  purchase!: PurchaseEntity
+  @IsOptional()
+  purchase?: PurchaseEntity
 }
 
 export default PurchaseProductDTO

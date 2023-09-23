@@ -11,22 +11,15 @@ class PurchaseProductService extends BaseService<PurchaseProductEntity> {
     this.productService = new ProductService()
   }
 
-  async create(
-    purchaseProduct: PurchaseProductDTO
-  ): Promise<PurchaseProductEntity> {
-    const newPurchaseProduct = (await this.execRepository).create(
-      purchaseProduct
-    )
+  async create(body: PurchaseProductDTO): Promise<PurchaseProductEntity> {
+    const purchase = (await this.execRepository).create(body)
 
-    const product = await this.productService.getById(
-      newPurchaseProduct.product.id
-    )
+    const product = await this.productService.getById(purchase.product.id)
 
-    newPurchaseProduct.totalPrice =
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      product!.price * newPurchaseProduct.quantityProduct
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    purchase.totalPrice = product!.price * purchase.quantityProduct
 
-    return await (await this.execRepository).save(purchaseProduct)
+    return await (await this.execRepository).save(purchase)
   }
 
   async delete(id: string): Promise<DeleteResult> {
