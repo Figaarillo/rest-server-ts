@@ -3,6 +3,7 @@ import { BaseService } from '../../config/base.service'
 import UserEntity from '../entities/user.entity'
 import type UserDTO from '../dtos/user.dto'
 import bcrypt from 'bcrypt'
+import { type RoleType } from '../dtos/user.dto'
 
 class UserService extends BaseService<UserEntity> {
   constructor() {
@@ -49,6 +50,19 @@ class UserService extends BaseService<UserEntity> {
 
   async update(id: string, infoUpdate: UserDTO): Promise<UpdateResult> {
     return await (await this.execRepository).update(id, infoUpdate)
+  }
+
+  async findUserWithRole(
+    id: string,
+    role: RoleType
+  ): Promise<UserEntity | null> {
+    const user = await (await this.execRepository)
+      .createQueryBuilder('user')
+      .where({ id })
+      .andWhere({ role })
+      .getOne()
+
+    return user
   }
 }
 
