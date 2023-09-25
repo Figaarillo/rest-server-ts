@@ -11,6 +11,7 @@ import ProductRouter from './product/product.router'
 import PurchaseRouter from './purchase/purchase.router'
 import PurchaseProductRouter from './purchase/purchsae-product.router'
 import LoginStrattegy from './auth/strategies/login.strategy'
+import JWTStrategy from './auth/strategies/jwt.strategy'
 
 class ServerBoostrap extends ConfigServer {
   public app: Application
@@ -53,7 +54,7 @@ class ServerBoostrap extends ConfigServer {
   // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   passportUse() {
     // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
-    return [new LoginStrattegy().use()]
+    return [new LoginStrattegy().use(), new JWTStrategy().use()]
   }
 
   async dbConnection(): Promise<void> {
