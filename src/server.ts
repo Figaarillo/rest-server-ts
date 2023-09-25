@@ -10,6 +10,7 @@ import CustomerRouter from './customer/customer.router'
 import ProductRouter from './product/product.router'
 import PurchaseRouter from './purchase/purchase.router'
 import PurchaseProductRouter from './purchase/purchsae-product.router'
+import LoginStrattegy from './auth/strategies/login.strategy'
 
 class ServerBoostrap extends ConfigServer {
   public app: Application
@@ -26,6 +27,9 @@ class ServerBoostrap extends ConfigServer {
     this.app.use(express.urlencoded({ extended: true }))
     this.app.use(morgan('dev'))
     this.app.use(cors())
+
+    // passport
+    this.passportUse()
 
     // routes
     this.app.use('/api', this.routes())
@@ -44,6 +48,12 @@ class ServerBoostrap extends ConfigServer {
       new PurchaseProductRouter().router,
       new UserRouter().router,
     ]
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  passportUse() {
+    // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
+    return [new LoginStrattegy().use()]
   }
 
   async dbConnection(): Promise<void> {
