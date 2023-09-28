@@ -12,6 +12,7 @@ import PurchaseRouter from './purchase/purchase.router'
 import PurchaseProductRouter from './purchase/purchsae-product.router'
 import LoginStrattegy from './auth/strategies/login.strategy'
 import JWTStrategy from './auth/strategies/jwt.strategy'
+import AuthRouter from './auth/auth.router'
 
 class ServerBoostrap extends ConfigServer {
   public app: Application
@@ -48,6 +49,7 @@ class ServerBoostrap extends ConfigServer {
       new PurchaseRouter().router,
       new PurchaseProductRouter().router,
       new UserRouter().router,
+      new AuthRouter().router,
     ]
   }
 
